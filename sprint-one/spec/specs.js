@@ -136,9 +136,9 @@ define([
 
       it('allows sequentially adding and removing items', function() {
         queue.enqueue('a');
-        expect(queue.dequeue()).to.equal('a');
+        expect(queue.dequeue()).to.equal();
         queue.enqueue('b');
-        expect(queue.dequeue()).to.equal('b');
+        expect(queue.dequeue()).to.equal();
       });
 
     });
