@@ -20,9 +20,12 @@ var Queue = function (element) {
     var keysArray = Object.keys(storage);
     var firstElm = keysArray[0];
 
+    const firstValue = storage[firstElm];
     delete storage[firstElm];
-    console.log('q storage ', storage);
-    return storage[firstElm];
+    console.log('firstValue ', firstValue)
+
+    //return what test wants
+    return firstValue;
   };
 
 
