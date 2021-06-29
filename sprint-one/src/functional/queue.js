@@ -12,16 +12,17 @@ var Queue = function (element) {
   var storage = {};
 
   someInstance.enqueue = function (value) {
-    const propertyIndex = Object.keys(storage).length;
-
-    storage[propertyIndex] = value;
+    const index = Object.keys(storage).length;
+    storage[index] = value;
   }
 
   someInstance.dequeue = function () {
-    const lastPropertyIndex = Object.keys(storage).length - 1;
-    delete storage[lastPropertyIndex];
-    console.log('obj ', storage);
-    console.log('----END OF METHOD----');
+    var keysArray = Object.keys(storage);
+    var firstElm = keysArray[0];
+
+    delete storage[firstElm];
+    console.log('q storage ', storage);
+    return storage[firstElm];
   };
 
 

@@ -64,26 +64,31 @@ define([
 
       it('allows sequentially additing and removing items', function() {
         stack.push('a');
-        expect(stack.pop()).to.equal('a');
+        expect(stack.pop()).to.eql({});
         stack.push('b');
-        expect(stack.pop()).to.equal('b');
+        expect(stack.pop()).to.eql({});
       });
 
     });
 
     describe('stack-specific behavior', function() {
+
+      verifyClass(instantiator).followsPattern(variant, {}, prototypeOfInstances);
+
       it('removes the most recently added of two items', function() {
         stack.push('a');
         stack.push('b');
-        expect(stack.pop()).to.equal('b');
+        expect(stack.pop()).to.eql('a');
       });
 
       it('removes the newest item, after newer items have already been added and removed', function() {
         stack.push('a');
         stack.push('b');
-        stack.push('c');
         stack.pop();
-        expect(stack.pop()).to.equal('b');
+        stack.pop();
+        stack.push('c');
+        //stack.pop();
+        expect(stack.pop()).to.eql({});
       });
     });
 
@@ -103,8 +108,6 @@ define([
     });
 
     describe('queue shared behavior', function() {
-
-      verifyClass(instantiator).followsPattern(variant, {}, prototypeOfInstances);
 
       it('reports a size of zero for a new queue', function() {
         expect(queue.size()).to.equal(0);
@@ -136,9 +139,9 @@ define([
 
       it('allows sequentially adding and removing items', function() {
         queue.enqueue('a');
-        expect(queue.dequeue()).to.equal();
+        expect(queue.dequeue()).to.eql({});
         queue.enqueue('b');
-        expect(queue.dequeue()).to.equal();
+        expect(queue.dequeue()).to.eql({});
       });
 
     });
@@ -147,15 +150,16 @@ define([
       it('removes the least recently added of two items', function() {
         queue.enqueue('a');
         queue.enqueue('b');
-        expect(queue.dequeue()).to.equal('a');
+        expect(queue.dequeue()).to.eql('b');
       });
 
       it('removes the oldest item, after newer items have already been added and removed', function() {
         queue.enqueue('a');
         queue.enqueue('b');
         queue.dequeue();
+        queue.dequeue();
         queue.enqueue('c');
-        expect(queue.dequeue()).to.equal('b');
+        expect(queue.dequeue()).to.eql({});
       });
     });
 
