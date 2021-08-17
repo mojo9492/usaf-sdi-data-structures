@@ -1,7 +1,21 @@
 class Queue {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
   constructor() {
+    this.queue = {}
+    this.index = 0
   }
 
+  enqueue(item) {
+      this.queue[this.index] = item
+      this.index++
+  }
+
+  dequeue() {
+    if (this.index > 0) {
+      delete this.queue[this.index - 1]
+    }
+   }
+
+  size() {
+    return Object.keys(this.queue).length
+  }
 }

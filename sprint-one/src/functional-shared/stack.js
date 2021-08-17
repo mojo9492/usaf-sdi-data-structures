@@ -1,11 +1,12 @@
-const Stack = function() {
+var Stack = function() {
   this.instance = {};
   this.storage = {};
   Object.assign(instance, stackMethods);
   return instance;
 };
 
-const stackMethods = {};
+var stackMethods = {};
+
 stackMethods.push = function (value) {
   const index = Object.keys(storage).length;
     storage[index] = value;
